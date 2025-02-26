@@ -15,5 +15,5 @@ dependencyResolutionManagement {
         }
     }
 }
-rootProject.name = "ScoutingAppRedo"
+rootProject.name = "ScoutingAppRedoPIT"
 include ':app'

@@ -1,4 +1,4 @@
-package com.pppig236.scoutingappredo
+package com.pppig236.scoutingappredopit
 
 import android.Manifest
 import android.annotation.SuppressLint
@@ -68,26 +68,26 @@ class MainActivity : AppCompatActivity() {
                 buttonDelete.visibility = View.VISIBLE
         }
 
-        buttonDelete.setOnClickListener {
-            val builder = AlertDialog.Builder(this@MainActivity)
-            builder.setMessage("Are you sure you want to delete ALL DATA?")
-                .setCancelable(false)
-                .setPositiveButton("Yes") { dialog, id ->
-//                    // Delete selected note from database
-                    showHide(buttonDelete)
-                    csvOperations.deleteCsv(constants.file)
-                    createCsv()
-                    userList.clear() // make sure there are no leftovers
-                    updateTable()
+//        buttonDelete.setOnClickListener {
+//            val builder = AlertDialog.Builder(this@MainActivity)
+//            builder.setMessage("Are you sure you want to delete ALL DATA?")
+//                .setCancelable(false)
+//                .setPositiveButton("Yes") { dialog, id ->
+////                    // Delete selected note from database
+//                    showHide(buttonDelete)
+//                    csvOperations.deleteCsv(constants.file)
+//                    createCsv()
+//                    userList.clear() // make sure there are no leftovers
+//                    updateTable()
+////                    dialog.dismiss()
+//                }
+//                .setNegativeButton("No") { dialog, id ->
+//                    // Dismiss the dialog
 //                    dialog.dismiss()
-                }
-                .setNegativeButton("No") { dialog, id ->
-                    // Dismiss the dialog
-                    dialog.dismiss()
-                }
-            val alert = builder.create()
-            alert.show()
-        }
+//                }
+//            val alert = builder.create()
+//            alert.show()
+//        }
     }
 
     private fun showHide(view: View) {

@@ -7,7 +7,7 @@ android {
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.pppig236.scoutingappredo"
+        applicationId "com.pppig236.scoutingappredopit"
         minSdk 31
         targetSdk 33
         versionCode 1
@@ -28,7 +28,7 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    namespace 'com.pppig236.scoutingappredo'
+    namespace 'com.pppig236.scoutingappredopit'
 }
 
 dependencies {

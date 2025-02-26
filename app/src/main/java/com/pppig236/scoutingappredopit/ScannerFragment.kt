@@ -1,4 +1,4 @@
-package com.pppig236.scoutingappredo
+package com.pppig236.scoutingappredopit
 
 import android.os.Bundle
 import android.view.LayoutInflater

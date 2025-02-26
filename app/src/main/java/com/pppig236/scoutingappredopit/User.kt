@@ -1,4 +1,4 @@
-package com.pppig236.scoutingappredo
+package com.pppig236.scoutingappredopit
 
 data class User(
     var matchNumber: String,

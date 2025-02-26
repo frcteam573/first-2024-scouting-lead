@@ -1,4 +1,4 @@
-package com.pppig236.scoutingappredo
+package com.pppig236.scoutingappredopit
 
 import android.app.Activity
 import android.app.AlertDialog
