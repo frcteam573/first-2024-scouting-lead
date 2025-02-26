@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Team 573 Lead Scouter App</string>
+    <string name="app_name">MATCH - Lead Scouter App Team 573</string>
     <string name="scanner_fragment">Click to open the scanner</string>
     <string name="match">Match Number</string>
     <string name="team">Team Number</string>
