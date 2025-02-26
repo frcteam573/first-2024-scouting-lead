@@ -12,7 +12,7 @@ class CSVOperations {
 
         // create a new file with headers
         // Update this
-        file.writeText("Match Number,Alliance,Team Number,Name,Auto Coral L1,Auto Coral L2,Auto Coral L3,Auto Coral L4,Auto Algae Displaced,Auto Algae Processor,Auto Algae Barge,Auto Left,Teleop Coral L1,Teleop Coral L2,Teleop Coral L3,Teleop Coral L4,Teleop Algae Displaced,Teleop Algae Processed,Teleop Algae Barge,Defense,Penalties,Attempt Shallow,Sucess Shallow, Attempt Deep, Success Deep,Parked,Comments")
+        file.writeText("Match Number,Alliance,Team Number,Name,Auto Coral L1,Auto Coral L2,Auto Coral L3,Auto Coral L4,Auto Algae Displaced,Auto Algae Processor,Auto Algae Barge,Auto Left,Teleop Coral L1,Teleop Coral L2,Teleop Coral L3,Teleop Coral L4,Teleop Algae Displaced,Teleop Algae Processed,Teleop Algae Barge,Defense,Penalties,Attempt Shallow,Sucess Shallow, Attempt Deep, Success Deep,Parked,Comments,ScoutingType")
     }
 
     fun appendCsv(fileName: String, text: String) {
