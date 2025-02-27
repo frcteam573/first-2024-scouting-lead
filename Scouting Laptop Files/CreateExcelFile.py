@@ -7,7 +7,6 @@ from openpyxl import load_workbook
 import openpyxl
 import shutil
 from datetime import datetime
-import json
 import csv
 #from PIL import Image
 #import PIL
@@ -172,6 +171,15 @@ for inc, team in enumerate(TeamList):
                 rows.append(row)
 
     for inc2, row in enumerate(rows):
+
+        #defense convert
+        defense_num = 0
+        if row['Defense'] == "Poor":
+            defense_num = 1
+        if row['Defense'] == "Average":
+            defense_num = 2
+        if row['Defense'] == "Great":
+            defense_num = 3
     							 	 		
         ws2.cell(row=inc2+r,column=1).value = int(row['Match Number'])
         ws2.cell(row=inc2+r,column=2).value = row['Alliance']
@@ -191,7 +199,7 @@ for inc, team in enumerate(TeamList):
         ws2.cell(row=inc2+r,column=16).value = int(row['Teleop Algae Displaced'])
         ws2.cell(row=inc2+r,column=17).value = int(row['Teleop Algae Processed'])
         ws2.cell(row=inc2+r,column=18).value = int(row['Teleop Algae Barge'])
-        ws2.cell(row=inc2+r,column=19).value = row['Defense']
+        ws2.cell(row=inc2+r,column=19).value = defense_num
         ws2.cell(row=inc2+r,column=20).value = row['Penalties'].replace("$n", "")
         ws2.cell(row=inc2+r,column=21).value = convertTFtoint(row['Attempt Shallow'])
         ws2.cell(row=inc2+r,column=22).value = convertTFtoint(row['Sucess Shallow'])
@@ -208,80 +216,68 @@ for inc, team in enumerate(TeamList):
     ws_sum.cell(row = inc+9,column = 1).value = "='"+team+"'!"+"B1" #Team Number
 
     #AVG
-    ws_sum.cell(row = inc+9,column = 2).value = "='"+team+"'!"+"D17" #Autos
-    ws_sum.cell(row = inc+9,column = 3).value = "='"+team+"'!"+"E17"
-    ws_sum.cell(row = inc+9,column = 4).value = "='"+team+"'!"+"F17"
-    ws_sum.cell(row = inc+9,column = 5).value = "='"+team+"'!"+"G17"
-    ws_sum.cell(row = inc+9,column = 6).value = "='"+team+"'!"+"H17"
-    ws_sum.cell(row = inc+9,column = 7).value = "='"+team+"'!"+"I17"
-    ws_sum.cell(row = inc+9,column = 8).value = "='"+team+"'!"+"J17"
-    ws_sum.cell(row = inc+9,column = 9).value = "='"+team+"'!"+"K17"
+    ws_sum.cell(row = inc+9,column = 4).value = "='"+team+"'!"+"D17" #Autos
+    ws_sum.cell(row = inc+9,column = 5).value = "='"+team+"'!"+"E17"
+    ws_sum.cell(row = inc+9,column = 6).value = "='"+team+"'!"+"F17"
+    ws_sum.cell(row = inc+9,column = 7).value = "='"+team+"'!"+"G17"
+    ws_sum.cell(row = inc+9,column = 8).value = "='"+team+"'!"+"H17"
+    ws_sum.cell(row = inc+9,column = 9).value = "='"+team+"'!"+"I17"
+    ws_sum.cell(row = inc+9,column = 10).value = "='"+team+"'!"+"J17"
+    ws_sum.cell(row = inc+9,column = 11).value = "='"+team+"'!"+"K17"
                                                                     #Tele
-    ws_sum.cell(row = inc+9,column = 10).value = "='"+team+"'!"+"L17"
-    ws_sum.cell(row = inc+9,column = 11).value = "='"+team+"'!"+"M17"
-    ws_sum.cell(row = inc+9,column = 12).value = "='"+team+"'!"+"N17"
-    ws_sum.cell(row = inc+9,column = 13).value = "='"+team+"'!"+"O17"
-    ws_sum.cell(row = inc+9,column = 14).value = "='"+team+"'!"+"P17"
-    ws_sum.cell(row = inc+9,column = 15).value = "='"+team+"'!"+"Q17"
-    ws_sum.cell(row = inc+9,column = 16).value = "='"+team+"'!"+"R17"
+    ws_sum.cell(row = inc+9,column = 14).value = "='"+team+"'!"+"L17"
+    ws_sum.cell(row = inc+9,column = 15).value = "='"+team+"'!"+"M17"
+    ws_sum.cell(row = inc+9,column = 16).value = "='"+team+"'!"+"N17"
+    ws_sum.cell(row = inc+9,column = 17).value = "='"+team+"'!"+"O17"
+    ws_sum.cell(row = inc+9,column = 18).value = "='"+team+"'!"+"P17"
+    ws_sum.cell(row = inc+9,column = 19).value = "='"+team+"'!"+"Q17"
+    ws_sum.cell(row = inc+9,column = 20).value = "='"+team+"'!"+"R17"
 
-    ws_sum.cell(row = inc+9,column = 17).value = "='"+team+"'!"+"U17" #Endgame
-    ws_sum.cell(row = inc+9,column = 18).value = "='"+team+"'!"+"V17"
-    ws_sum.cell(row = inc+9,column = 19).value = "='"+team+"'!"+"W17"                                                                
-    ws_sum.cell(row = inc+9,column = 20).value = "='"+team+"'!"+"X17"
-    ws_sum.cell(row = inc+9,column = 21).value = "='"+team+"'!"+"Y17"
+    ws_sum.cell(row = inc+9,column = 21).value = "='"+team+"'!"+"U17" #Endgame
+    ws_sum.cell(row = inc+9,column = 22).value = "='"+team+"'!"+"V17"
+    ws_sum.cell(row = inc+9,column = 23).value = "='"+team+"'!"+"W17"                                                                
+    ws_sum.cell(row = inc+9,column = 24).value = "='"+team+"'!"+"X17"
+    ws_sum.cell(row = inc+9,column = 25).value = "='"+team+"'!"+"Y17"
 
     #MAX
-    ws_sum.cell(row = inc+9,column = 22).value = "='"+team+"'!"+"D18" #Autos
-    ws_sum.cell(row = inc+9,column = 23).value = "='"+team+"'!"+"E18"
-    ws_sum.cell(row = inc+9,column = 24).value = "='"+team+"'!"+"F18"
-    ws_sum.cell(row = inc+9,column = 25).value = "='"+team+"'!"+"G18"
-    ws_sum.cell(row = inc+9,column = 26).value = "='"+team+"'!"+"H18"
-    ws_sum.cell(row = inc+9,column = 27).value = "='"+team+"'!"+"I18"
-    ws_sum.cell(row = inc+9,column = 28).value = "='"+team+"'!"+"J18"
-    ws_sum.cell(row = inc+9,column = 29).value = "='"+team+"'!"+"K18"
+    ws_sum.cell(row = inc+9,column = 26).value = "='"+team+"'!"+"D18" #Autos
+    ws_sum.cell(row = inc+9,column = 27).value = "='"+team+"'!"+"E18"
+    ws_sum.cell(row = inc+9,column = 28).value = "='"+team+"'!"+"F18"
+    ws_sum.cell(row = inc+9,column = 29).value = "='"+team+"'!"+"G18"
+    ws_sum.cell(row = inc+9,column = 30).value = "='"+team+"'!"+"H18"
+    ws_sum.cell(row = inc+9,column = 31).value = "='"+team+"'!"+"I18"
+    ws_sum.cell(row = inc+9,column = 32).value = "='"+team+"'!"+"J18"
+    ws_sum.cell(row = inc+9,column = 33).value = "='"+team+"'!"+"K18"
                                                                     #Tele
-    ws_sum.cell(row = inc+9,column = 30).value = "='"+team+"'!"+"L18"
-    ws_sum.cell(row = inc+9,column = 31).value = "='"+team+"'!"+"M18"
-    ws_sum.cell(row = inc+9,column = 32).value = "='"+team+"'!"+"N18"
-    ws_sum.cell(row = inc+9,column = 33).value = "='"+team+"'!"+"O18"
-    ws_sum.cell(row = inc+9,column = 34).value = "='"+team+"'!"+"P18"
-    ws_sum.cell(row = inc+9,column = 35).value = "='"+team+"'!"+"Q18"
-    ws_sum.cell(row = inc+9,column = 36).value = "='"+team+"'!"+"R18"
-
-    ws_sum.cell(row = inc+9,column = 37).value = "='"+team+"'!"+"U18" #Endgame
-    ws_sum.cell(row = inc+9,column = 38).value = "='"+team+"'!"+"V18"
-    ws_sum.cell(row = inc+9,column = 39).value = "='"+team+"'!"+"W18"                                                                
-    ws_sum.cell(row = inc+9,column = 40).value = "='"+team+"'!"+"X18"
-    ws_sum.cell(row = inc+9,column = 41).value = "='"+team+"'!"+"Y18"
+    ws_sum.cell(row = inc+9,column = 34).value = "='"+team+"'!"+"L18"
+    ws_sum.cell(row = inc+9,column = 35).value = "='"+team+"'!"+"M18"
+    ws_sum.cell(row = inc+9,column = 36).value = "='"+team+"'!"+"N18"
+    ws_sum.cell(row = inc+9,column = 37).value = "='"+team+"'!"+"O18"
+    ws_sum.cell(row = inc+9,column = 38).value = "='"+team+"'!"+"P18"
+    ws_sum.cell(row = inc+9,column = 39).value = "='"+team+"'!"+"Q18"
+    ws_sum.cell(row = inc+9,column = 40).value = "='"+team+"'!"+"R18"
 
     #MIN
-    ws_sum.cell(row = inc+9,column = 42).value = "='"+team+"'!"+"D19" #Autos
-    ws_sum.cell(row = inc+9,column = 43).value = "='"+team+"'!"+"E19"
-    ws_sum.cell(row = inc+9,column = 44).value = "='"+team+"'!"+"F19"
-    ws_sum.cell(row = inc+9,column = 45).value = "='"+team+"'!"+"G19"
-    ws_sum.cell(row = inc+9,column = 46).value = "='"+team+"'!"+"H19"
-    ws_sum.cell(row = inc+9,column = 47).value = "='"+team+"'!"+"I19"
-    ws_sum.cell(row = inc+9,column = 48).value = "='"+team+"'!"+"J19"
-    ws_sum.cell(row = inc+9,column = 49).value = "='"+team+"'!"+"K19"
+    ws_sum.cell(row = inc+9,column = 41).value = "='"+team+"'!"+"D19" #Autos
+    ws_sum.cell(row = inc+9,column = 42).value = "='"+team+"'!"+"E19"
+    ws_sum.cell(row = inc+9,column = 43).value = "='"+team+"'!"+"F19"
+    ws_sum.cell(row = inc+9,column = 44).value = "='"+team+"'!"+"G19"
+    ws_sum.cell(row = inc+9,column = 45).value = "='"+team+"'!"+"H19"
+    ws_sum.cell(row = inc+9,column = 46).value = "='"+team+"'!"+"I19"
+    ws_sum.cell(row = inc+9,column = 47).value = "='"+team+"'!"+"J19"
+    ws_sum.cell(row = inc+9,column = 48).value = "='"+team+"'!"+"K19"
                                                                     #Tele
-    ws_sum.cell(row = inc+9,column = 50).value = "='"+team+"'!"+"L19"
-    ws_sum.cell(row = inc+9,column = 51).value = "='"+team+"'!"+"M19"
-    ws_sum.cell(row = inc+9,column = 52).value = "='"+team+"'!"+"N19"
-    ws_sum.cell(row = inc+9,column = 53).value = "='"+team+"'!"+"O19"
-    ws_sum.cell(row = inc+9,column = 54).value = "='"+team+"'!"+"P19"
-    ws_sum.cell(row = inc+9,column = 55).value = "='"+team+"'!"+"Q19"
-    ws_sum.cell(row = inc+9,column = 56).value = "='"+team+"'!"+"R19"
-
-    ws_sum.cell(row = inc+9,column = 57).value = "='"+team+"'!"+"U19" #Endgame
-    ws_sum.cell(row = inc+9,column = 58).value = "='"+team+"'!"+"V19"
-    ws_sum.cell(row = inc+9,column = 59).value = "='"+team+"'!"+"W19"                                                                
-    ws_sum.cell(row = inc+9,column = 60).value = "='"+team+"'!"+"X19"
-    ws_sum.cell(row = inc+9,column = 61).value = "='"+team+"'!"+"Y19"
+    ws_sum.cell(row = inc+9,column = 49).value = "='"+team+"'!"+"L19"
+    ws_sum.cell(row = inc+9,column = 50).value = "='"+team+"'!"+"M19"
+    ws_sum.cell(row = inc+9,column = 51).value = "='"+team+"'!"+"N19"
+    ws_sum.cell(row = inc+9,column = 52).value = "='"+team+"'!"+"O19"
+    ws_sum.cell(row = inc+9,column = 53).value = "='"+team+"'!"+"P19"
+    ws_sum.cell(row = inc+9,column = 54).value = "='"+team+"'!"+"Q19"
+    ws_sum.cell(row = inc+9,column = 55).value = "='"+team+"'!"+"R19"
 
     #Pits
-    ws_sum.cell(row = inc+9,column = 62).value = "='"+team+"'!"+"S17" #Defense
-    ws_sum.cell(row = inc+9,column = 63).value = "='"+team+"'!"+"B5" #DriveTrain
+    ws_sum.cell(row = inc+9,column = 56).value = "='"+team+"'!"+"S17" #Defense Rating
+    ws_sum.cell(row = inc+9,column = 57).value = "='"+team+"'!"+"B5" #DriveTrain
 
 
 """ 
